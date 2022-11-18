@@ -31,6 +31,32 @@ JavaScript-specific refactorings  | 5 | 10
 
 ### *React*-specific Refactorings
 
+We found 15 novel refactorings that only occur in front-end code that uses React. In the following table, we summarize the *React*-specific refactorings operations and the instances of each one.
+
+Refactoring | Occurrences
+| :--- | :---:
+Replace class component with function component | 17
+Extract stateful logic to a custom hook | 8
+Replace direct mutation of state with ``setState()`` | 5
+Extract conditional in render | 4
+Replace access state in ``setState`` with callbacks | 3
+Remove ``forceUpdatte()`` | 2
+Replace third-party component with own component | 2
+Remove props in initial state | 2
+Replace callback bind in constructor with bind in render | 2
+Remove direct DOM manipulation | 1
+Remove unused props | 1
+Replace HTML/JS code with third-party components | 1
+Replace function component with Class component | 1
+Replace function component with React.FC syntax | 1
+Replace dynamic keys with stable ids | 1
+
+#### Replace class component with function component
+
+*React* supports class and function components. A class component is an ES6 class with local state, lifecycle control methods (e.g., ``componentDidMount()`` and ``componentDidUpdate()``) and a render method that returns what must appear in the UI. On the other hand, a function component is just a JavaScript function that accepts props (or inputs) as arguments and returns a *React* element representing the UI. For this reason, function components are simpler to understand than class components. Moreover, by using hooks, function components can access state and other *React* features
+
+For these reasons, replacing class components with function components is a common *React*-specific refactoring, with 17 occurrences in our dataset. The following figure shows an example that replaces the ``CreateUserDialog`` class with a function component. Specifically, the refactoring (1) changes the class to a function, (2) removes the ``render`` method, (3) removes references to ``this``, (4) removes the constructor and replaces the state with a ``useState`` hook, (5) replaces the ``componentDidMount()`` lifecycle method with a ``useEffect`` hook.
+
 ## About
 
 This catalog was proposed by Fabio Ferreira and Marco Tulio Valente, from [ASERG/DCC/UFMG][ASERG].
