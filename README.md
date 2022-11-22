@@ -256,7 +256,7 @@ Please feel free to make pull requests and suggestions ([Issues][Issues] tab).
 [React]: https://reactjs.org
 [Facebook]: https://github.com/facebook
 [ASERG]: http://aserg.labsoft.dcc.ufmg.br/
-[Issues]: https://github.com/fabiosferreira/React-Code-Smells/issues
+[Issues]: https://github.com/fabiosferreira/React-Refactorings/issues
 [eslint-plugin-react]: https://github.com/yannickcr/eslint-plugin-react
 
 </div>
