@@ -1,4 +1,4 @@
-# Catalog of common refactorings performed in React-based Web Apps
+# Catalog of common refactorings performed in React-based Web apps
 
 <div align="justify">
  
