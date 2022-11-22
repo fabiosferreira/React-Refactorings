@@ -1,6 +1,6 @@
 <div align="justify">
 
-# React Refactorings
+# Catalog of common refactorings performed in React-based applications
 
 ## Table of Contents
 
