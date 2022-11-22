@@ -2,6 +2,17 @@
 
 # React-Refactorings
 
+## Table of Contents
+
+* __[Introduction](#introduction)__
+* __[Catalog of *React* Refactorings](#catalog-of-react-refactorings)__
+  * [*React*-specific Refactorings](#react-specific-refactorings)
+  * [React-adapted Refactorings](#react-adapted-refactorings)
+  * [JavaScript Refactorings](#javascript-refactorings)
+  * [Traditional Refactorings](#traditional-refactorings)
+* __[About](__about)__
+
+  
 ## Introduction 
 
 Refactoring is a well-known technique to improve software quality. However, there are still relevant domains where refactoring has not been studied in-depth, such as JavaScript front-end frameworks. Essentially, such frameworks provide abstractions—called components—for structuring and organizing the codebase of modern and responsive Web UIs. Since these UIs can reach hundreds of components, it is natural to expect that suboptimal design decisions will eventually occur in their development. Therefore, information and documentation on the refactorings performed in these components have a practical value for practitioners nowadays, particularly for front-end developers.
@@ -37,21 +48,21 @@ We found 15 novel refactorings that only occur in front-end code that uses React
 
 Refactoring | Occurrences
 | :--- | :---:
-Replace class component with function component | 17
-Extract stateful logic to a custom hook | 8
-Replace direct mutation of state with ``setState()`` | 5
-Extract conditional in render | 4
-Replace access state in ``setState`` with callbacks | 3
-Remove ``forceUpdatte()`` | 2
-Replace third-party component with own component | 2
-Remove props in initial state | 2
-Replace callback bind in constructor with bind in render | 2
-Remove direct DOM manipulation | 1
-Remove unused props | 1
-Replace HTML/JS code with third-party components | 1
-Replace function component with Class component | 1
-Replace function component with React.FC syntax | 1
-Replace dynamic keys with stable ids | 1
+[Replace class component with function component](#replace-class-component-with-function-component) | 17
+[Extract stateful logic to a custom hook](#extract-stateful-logic-to-a-custom-hook) | 8
+[Replace direct mutation of state with ``setState()``](#replace-direct-mutation-of-state-with-setstate) | 5
+[Extract conditional in render](#extract-conditional-in-render) | 4
+[Replace access state in ``setState`` with callbacks](#replace-access-state-in-setstate-with-callbacks) | 3
+[Remove ``forceUpdatte()``](#remove-forceupdatte) | 2
+[Replace third-party component with own component](#replace-third-party-component-with-own-component) | 2
+[Remove props in initial state](#remove-props-in-initial-state) | 2
+[Replace callback bind in constructor with bind in render](#replace-callback-bind-in-constructor-with-bind-in-render) | 2
+[Remove direct DOM manipulation](#remove-direct-dom-manipulation) | 1
+[Remove unused props](#remove-unused-props) | 1
+[Replace HTML/JS code with third-party components](#replace-htmljs-code-with-third-party-components) | 1
+[Replace function component with Class component](#replace-function-component-with-class-component) | 1
+[Replace function component with React.FC syntax](#replace-function-component-with-reactfc-syntax) | 1
+[Replace dynamic keys with stable ids](#replace-dynamic-keys-with-stable-ids) | 1
 
 #### Replace class component with function component
 
@@ -71,12 +82,12 @@ By default, *React* provides hooks, such as ``useState()``, for tracking state i
 For example, several components in the ``Redash`` project need to load geolocation data and add it to the ``geoJson`` components state. Initially, each component had its geolocation state and the logic that loads it. Then, a refactoring was performed to extract the state and the associated logic to a single custom hook, called ``useLoadGeoJson``, as illustrated in the following figure. We found eight occurrences of this refactoring.
 
 <figure>
-  <img src="img/hook-example.png" alt="Refactoring CreateUserDialog class component to function component" title='Refactoring CreateUserDialog class component to function component' width="75%"/><br>
+  <img src="img/hook-example.png" alt="Refactoring CreateUserDialog class component to function component" title='Refactoring CreateUserDialog class component to function component' width="65%"/><br>
   <figcaption align="center">(a) useLoadGeoJson custom hook</figcaption><br>
 </figure>
 
 <figure>
-  <img src="img/use-of-hook.png" alt="The component GeneralSettings using the useLoadGeoJson hook" title='The component GeneralSettings using the useLoadGeoJson hook' width="75%"/><br>
+  <img src="img/use-of-hook.png" alt="The component GeneralSettings using the useLoadGeoJson hook" title='The component GeneralSettings using the useLoadGeoJson hook' width="65%"/><br>
   <figcaption align="center">(b) The component GeneralSettings using the useLoadGeoJson hook</figcaption>
 </figure>
 
@@ -131,21 +142,37 @@ React uses its own representation of the DOM, called virtual DOM. When the state
 
 We found one refactoring that eliminates the unsed component props.
 
+#### Replace HTML/JS code with third-party components
+
+This refactoring is similar to the ``Extract HTML/JS code to component``. However, developers replace the HTML/JS code with a third-party component. We found one occurrence of this refactoring.
+
+#### Replace function component with class Component
+
+We found one refactoring replacing function with class component.
+
+#### Replace function component with React.FC syntax
+
+React.FC syntax (or React.FunctionComponent) is a TypeScript interface for function components. While components that uses plain function can return literals values, components that use this interface always return a *React* element or null. We found one refactoring that replaces a plain function component with React.FC syntax.
+
+#### Replace dynamic keys with stable ids
+
+When creating lists, keys help *React* to identify which list items have changed, added, or removed. Therefore, keys should be used to give array elements a stable identity. However, developers usually use the array indexes as keys, which may break the application or render inaccurate data, for example, when the order of items changes. We found one refactoring that replaces dynamic keys (e.g., array indexes) with static keys.
+
 ### React-adapted Refactorings
 
 In our analysis, we found seven refactorings that, although related to the *React* context, are adaptations of traditional refactorings. For this reason, we call them as *React*-adapted refactorings. In the following table, we summarize such refactorings and highlights the traditional refactoring they are similar to.
 
 Refactoring | Similar to | Occurrences
 | :--- | :--- | :---:
-Split component  | Extract Class | 38 
-Extract component | Extract Class | 13 
-Rename component | Rename Class | 10 
-Extract JSX outside render method to component  | Extract Class | 10 
-Extract HTML/JS code to component  | Extract Class | 9 
-Rename props | Rename field | 7 
-Merge components | Combine Functions into Class | 4 
-Replace value with props | Change Value to Reference | 3 
-Move Component | Move Class | 3
+[Split component](#split-component)  | Extract Class | 38 
+[Extract component](#extract-component) | Extract Class | 13 
+[Rename component](#rename-component) | Rename Class | 10 
+[Extract JSX outside render method to component](#extract-jsx-outside-render-method-to-component)  | Extract Class | 10 
+[Extract HTML/JS code to component](#extract-htmljs-code-to-component)  | Extract Class | 9 
+[Rename props](#rename-props) | Rename field | 7 
+[Merge components](#merge-components) | Combine Functions into Class | 4 
+[Replace value with props](#replace-value-with-props) | Change Value to Reference | 3 
+[Move Component](#move-component) | Move Class | 3
 
 #### Split component
 
@@ -182,6 +209,41 @@ This refactoring replaces a literal value that frequently changes  with a prop. 
 #### Move component
 
 This refactoring is recommended when a component is used in multiple files. In such cases, we should consider moving the component to the location where it is most used. We found three occurrences of the move component refactoring.
+
+### JavaScript Refactorings
+
+As described in the following table, we found ten instances of five refactoring operations specific to JavaScript, i.e., they are not directly related to *React*-specific code. For example, the most common refactoring is ``Convert JavaScript Code into TypeScript``, with four occurrences.
+
+Refactoring | Occurrences
+| :--- | :---:
+Convert JS code in TS | 4
+Replace promises with useCallBack  | 3
+Replace bind using arrow function syntax with class fields | 1
+Replace EOL to semi-colon format | 1
+Replace function with arrow function | 1
+
+### Traditional Refactorings
+  
+We also found 74 instances of 16 refactoring operations documented in Fowler’s catalog. ``Dead Code Elimination`` is the most common one, with 27 occurrences, followed by ``Extract Method``, with nine occurrences.
+
+Refactoring | Occurrences
+| :--- | :---:
+Dead Code Elimination  | 27 
+Extract Method  | 11 
+Move Method  | 5 
+Consolidate Conditional Expression  | 4 
+Move Features  | 4 
+Move File  | 4 
+Duplicated Code Elimination  | 3 
+Extract Configuration  | 3 
+Rename File  | 3 
+Rename Method  | 3 
+Rename Variable  | 2 
+Decompose Conditional | 1 
+Extract Fields from Object  | 1 
+Improve Code Readability  | 1 
+Remove Parameter  | 1 
+Replace IF with Ternary  | 1 
 
 ## About
 
