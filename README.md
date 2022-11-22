@@ -1,6 +1,6 @@
 <div align="justify">
 
-# React-Refactorings
+# React Refactorings
 
 ## Table of Contents
 
