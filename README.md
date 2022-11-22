@@ -37,10 +37,10 @@ The following table summarizes the number of distinct refactoring operations we 
 
 Category | Number of Refactorings | Occurrences
 | :--- | :---: | :---:
-*React*-specific refactorings  | 15 | 51
-*React*-adapted refactorings  | 9 | 97
-Traditional refactorings  | 16 | 74
-JavaScript-specific refactorings  | 5 | 10
+[*React*-specific refactorings](#react-specific-refactorings)  | 15 | 51
+[*React*-adapted refactorings](#react-adapted-refactorings)  | 9 | 97
+[Traditional refactorings](#traditional-refactorings)  | 16 | 74
+[JavaScript-specific refactorings](#javascript-refactorings)  | 5 | 10
 
 ### *React*-specific Refactorings
 
@@ -81,11 +81,12 @@ By default, *React* provides hooks, such as ``useState()``, for tracking state i
 
 For example, several components in the ``Redash`` project need to load geolocation data and add it to the ``geoJson`` components state. Initially, each component had its geolocation state and the logic that loads it. Then, a refactoring was performed to extract the state and the associated logic to a single custom hook, called ``useLoadGeoJson``, as illustrated in the following figure. We found eight occurrences of this refactoring.
 
+
 <figure>
-  <img src="img/hook-example.png" alt="Refactoring CreateUserDialog class component to function component" title='Refactoring CreateUserDialog class component to function component' width="65%"/><br>
+  <img src="img/hook-example.png" alt="Refactoring CreateUserDialog class component to function component" title='Refactoring CreateUserDialog class component to function component' width="65%" /><br>
   <figcaption align="center">(a) useLoadGeoJson custom hook</figcaption><br>
 </figure>
-
+<br>
 <figure>
   <img src="img/use-of-hook.png" alt="The component GeneralSettings using the useLoadGeoJson hook" title='The component GeneralSettings using the useLoadGeoJson hook' width="65%"/><br>
   <figcaption align="center">(b) The component GeneralSettings using the useLoadGeoJson hook</figcaption>
