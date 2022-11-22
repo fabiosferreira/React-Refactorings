@@ -1,7 +1,7 @@
+# Catalog of common refactorings performed in React-based Web Apps
+
 <div align="justify">
-
-# Catalog of common refactorings performed in React-based applications
-
+ 
 ## Table of Contents
 
 * __[Introduction](#introduction)__
